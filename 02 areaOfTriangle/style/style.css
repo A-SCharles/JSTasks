@@ -1,0 +1,12 @@
+body {
+    background-image: url(../image/photo-1542888743-a0323a8bd3df.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row {
+    min-height: 97vh;
+}
+
+#area {
+    height: 35px;
+}

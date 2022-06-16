@@ -1,0 +1,13 @@
+body {
+    background-image: url(../image/wallpaperflare.com_wallpaper.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row {
+    min-height: 97vh;
+}
+
+#days {
+    height: 35px;
+}
