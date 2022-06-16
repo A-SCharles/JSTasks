@@ -4,11 +4,12 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .row {
-    min-height: 97vh;
+    min-height: 100vh;
 }
 
-#r, #g, #b, #value {
+#r, #g, #b, #hex {
     height: 35px;
 }
 

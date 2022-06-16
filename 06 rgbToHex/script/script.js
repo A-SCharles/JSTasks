@@ -1,7 +1,8 @@
 const r = document.getElementById('r');
 const g = document.getElementById('g');
 const b = document.getElementById('b');
-const rgbcode = document.getElementById('value');
+r.focus();
+const hexcode = document.getElementById('hex');
 const preview = document.getElementById('preview');
 //
 function slice(hexcode,start,end){
@@ -10,29 +11,26 @@ function slice(hexcode,start,end){
  
 const btnConvert = document.getElementById('convert');
 btnConvert.addEventListener('click',()=>{
-    let hexcode = document.getElementById('hex').value;
-    
-    let redcode = slice(hexcode,0,2);
-    let greencode = slice(hexcode,2,4);
-    let bluecode = slice(hexcode,4,6);
+    let redcode = parseInt(r.value);
+    let greencode = parseInt(g.value);
+    let bluecode = parseInt(b.value);
 
-    r.innerHTML = parseInt(redcode, 16);
-    g.innerHTML = parseInt(greencode, 16);
-    b.innerHTML = parseInt(bluecode, 16);
-    rgbcode.innerHTML = 'rgb(' + parseInt(redcode, 16) + ', ' + parseInt(greencode, 16) + ', ' + parseInt(bluecode, 16) + ')';
-    
-    let previewColor = 'rgb(' + parseInt(redcode, 16) + ', ' + parseInt(greencode, 16) + ', ' + parseInt(bluecode, 16) + ')';
+    let hexString = redcode.toString(16) + greencode.toString(16) + bluecode.toString(16);
+
+    document.querySelector('#hex').innerHTML = '#'+hexString;
+
+    let previewColor = '#' + hexString; 
     preview.style = `background-color: ${previewColor}`;
+
 })
 
 const btnClear = document.getElementById('clear');
 btnClear.addEventListener('click', () => {
-    document.getElementById('hex').focus()
-    document.getElementById('hex').value = '';
-    r.innerHTML = '';
-    g.innerHTML = '';
-    b.innerHTML = '';
-    rgbcode.innerHTML = 'rgb(0 ,0 ,0)';
+    r.focus()
+    hexcode.innerHTML = '';
+    r.value = '';
+    g.value = '';
+    b.value = '';
     let previewColor = 'white';
     preview.style = `background-color: ${previewColor}`;
 })
