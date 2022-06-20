@@ -17,7 +17,7 @@ btnConvert.addEventListener('click',()=>{
 
     let hexString = redcode.toString(16) + greencode.toString(16) + bluecode.toString(16);
 
-    document.querySelector('#hex').innerHTML = '#'+hexString;
+    document.document.getElementById('hex').innerHTML = '#'+hexString;
 
     let previewColor = '#' + hexString; 
     preview.style = `background-color: ${previewColor}`;
