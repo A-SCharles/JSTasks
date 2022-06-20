@@ -1,48 +1,67 @@
-const mini = document.getElementById('minimum');
-const maxi = document.getElementById('maximum');
-const values = document.getElementById('values');
-let numbers = []
+// init variables
+const initialAmount = document.getElementById("initial");
+const interest = document.getElementById("interest");
+const years = document.getElementById("years");
 
+// display
+const display = document.getElementById("interestAmount");
 
-// Adds numbers to the array
-const btnAdd = document.getElementById('add');
-btnAdd.addEventListener('click', (n) => {
-    n = document.getElementById('numbers').value;
-    let i = numbers.length;
-    numbers[i] = n;
+// getting interest type selected option
+let select = document.querySelector("#interestType");
+let option = select.value;
 
-    if (i >= 1) {
-        values.innerHTML += ', ';
+// getting compound type option
+let compoundSelect = document.querySelector("#compounded");
+let compoundOption = compoundSelect.value;
+
+const btnCalc = document.getElementById("calculate");
+btnCalc.addEventListener("click", (P, R, t, n, I) => {
+  P = initialAmount.value;
+  t = years.value;
+  R = interest.value / 100;
+  // Simple
+  if ((select.value == "simple")) {
+    let SI = P * (1 + R * t);
+    SI = SI.toFixed(2);
+    I = SI - P;
+    I = I.toFixed(2);
+    display.innerHTML = "Your Total is: " + SI + " Your Interest is: " + I;
+    console.log(select.value)
+    // Compound interest
+  } else if ((select.value == "compound")) {
+    // amount of times compounded
+    if ((compoundSelect.value == "4")) {
+      n = 4;
+    } else if ((compoundSelect.value == "6")) {
+      n = 6;
+    } else if ((compoundSelect.value  == "12")) {
+      n = 12;
     }
-    values.innerHTML += numbers[i];
-    i++;
-    // clears input after value entered
-    document.getElementById('numbers').value = '';
-    document.getElementById('numbers').focus()
-})
 
-const btnCalc = document.getElementById('calculate');
-btnCalc.addEventListener('click', (min, max) => {
-  min = Math.min(...numbers);  
-  max = Math.max(...numbers);
-  
-  mini.innerHTML = min + ' is the lowest number.';
-  maxi.innerHTML = max + ' is the highest number.';
-})
+    // Compound
+    // Amounts
+    let CI = P * Math.pow(1 + R / n, n * t) - P;
+    CI = CI.toFixed(2);
+    // Interest
+    I = CI - P;
+    I = I.toFixed(2);
+    display.innerHTML = "Your Total is: " + CI + " Your Interest is: " + I;
+  }
+});
 
-const btnClear = document.getElementById('clear');
-btnClear.addEventListener('click', () => {
-    document.getElementById('numbers').focus()
-    document.getElementById('numbers').value = '';
-    mini.innerHTML = '';
-    maxi.innerHTML = '';
-    values.innerHTML = '';
-    numbers = [];
-    i = 0;
-})
+const btnClear = document.getElementById("clear");
+btnClear.addEventListener("click", () => {
+  initialAmount.value = "";
+  interest.value = "";
+  years.value = "";
+  display.innerHTML = "";
+  select.options[(select.selectedIndex = 0)];
+  compoundSelect.options[(compoundSelect.selectedIndex = 0)];
+});
 
 // copyright
 const Year = new Date().getFullYear();
-document.getElementById('footer').innerHTML = `
+document.getElementById("footer").innerHTML = `
 &copyAbdus-Samad Charles ${Year}
 `;
+
